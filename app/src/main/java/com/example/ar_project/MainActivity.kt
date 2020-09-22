@@ -3,15 +3,18 @@ package com.example.ar_project
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.MotionEvent
 import android.view.View
+import android.widget.Toast
 import com.google.ar.core.HitResult
 import com.google.ar.core.Plane
 import com.google.ar.sceneform.AnchorNode
+import com.google.ar.sceneform.HitTestResult
 import com.google.ar.sceneform.assets.RenderableSource
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,10 +24,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        button.setOnClickListener {
-            addModel()
-        }
 
         fragment = supportFragmentManager.findFragmentById(R.id.sceneform_fragment) as ArFragment
 
@@ -45,9 +44,13 @@ class MainActivity : AppCompatActivity() {
             .build()
 
         renderableFuture.thenAccept { it -> testRenderable = it }
+
+        fragment.arSceneView.scene.addOnUpdateListener {
+            frameUpdate()
+        }
     }
 
-    private fun addModel() {
+    private fun frameUpdate() {
         val frame = fragment.arSceneView.arFrame
         val point = getScreenCenter()
         val hits: List<HitResult>
@@ -57,15 +60,22 @@ class MainActivity : AppCompatActivity() {
             for (hit in hits) {
                 val trackable = hit.trackable
                 if (trackable is Plane) {
-                    val anchor = hit!!.createAnchor()
-                    val anchorNode = AnchorNode(anchor)
-                    anchorNode.setParent(fragment.arSceneView.scene)
-                    val mNode = TransformableNode(fragment.transformationSystem)
-                    mNode.setParent(anchorNode)
-                    mNode.renderable = testRenderable
-                    mNode.select()
-                    button.visibility = (View.GONE)
-                    break
+                    if (getSpawningChance(1000)) {
+                        val anchor = hit!!.createAnchor()
+                        val anchorNode = AnchorNode(anchor)
+                        anchorNode.setParent(fragment.arSceneView.scene)
+                        val mNode = TransformableNode(fragment.transformationSystem)
+                        mNode.setParent(anchorNode)
+                        mNode.renderable = testRenderable
+                        mNode.setOnTapListener { hitTestRes: HitTestResult?, motionEv: MotionEvent? ->
+                            Toast.makeText(
+                                this,
+                                "Catch this noob!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        break
+                    }
                 }
             }
         }
@@ -74,5 +84,15 @@ class MainActivity : AppCompatActivity() {
     private fun getScreenCenter(): android.graphics.Point {
         val vw = findViewById<View>(android.R.id.content)
         return android.graphics.Point(vw.width / 2, vw.height / 2)
+    }
+
+    private fun getSpawningChance(chance: Int): Boolean {
+        val randomNumber = (0..chance).random()
+        return if (randomNumber == 1) {
+            Log.i("ARPROJECT", "Spawn!")
+            true
+        } else {
+            false
+        }
     }
 }
