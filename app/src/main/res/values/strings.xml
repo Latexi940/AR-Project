@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AR-Project</string>
+    <string name="button_name">Add model</string>
 </resources>
