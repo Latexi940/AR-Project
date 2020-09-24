@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">AR-Project</string>
     <string name="button_name">Add model</string>
+    <string name="welcome_text1">Welcome to Catch-a-Mon!</string>
+    <string name="welcome_text2">Please enter your name:</string>
+    <string name="start_button_text">Start your adventure</string>
 </resources>

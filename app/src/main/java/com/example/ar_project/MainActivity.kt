@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
                     .setRecenterMode(RenderableSource.RecenterMode.ROOT)
                     .build()
             )
-            .setRegistryId("CesiumMan")
+            .setRegistryId("Avocado")
             .build()
 
         renderableFuture.thenAccept { it -> testRenderable = it }
@@ -108,7 +108,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
                         mNode.setOnTapListener { hitTestRes: HitTestResult?, motionEv: MotionEvent? ->
                             Toast.makeText(
                                 this,
-                                "Catch this noob!",
+                                "Catch this, noob!",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
