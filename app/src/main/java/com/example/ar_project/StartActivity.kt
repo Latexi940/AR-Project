@@ -24,10 +24,16 @@ class StartActivity : AppCompatActivity() {
 
         val retrivedJson = prefs.getString("userProfile", "no user")
 
+        //Uncomment this to clear user data
+        //prefsEdit.clear()
+        //prefsEdit.apply()
+
+
         if (retrivedJson != "no user") {
             val userProfile = gson.fromJson(retrivedJson, User::class.java)
             Log.i("ARPROJECT", "User profile found: $userProfile")
             val intent = Intent(this@StartActivity, MainActivity::class.java)
+            intent.putExtra("userProfile", userProfile)
             startActivity(intent)
         } else {
             Log.i("ARPROJECT", "User profile not found. Please create a new one.")
@@ -49,6 +55,7 @@ class StartActivity : AppCompatActivity() {
                 Log.i("ARPROJECT", "New user created")
 
                 val intent = Intent(this@StartActivity, MainActivity::class.java)
+                intent.putExtra("userProfile", newUser)
                 startActivity(intent)
             }
         }

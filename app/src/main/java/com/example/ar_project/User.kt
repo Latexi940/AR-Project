@@ -1,11 +1,12 @@
 package com.example.ar_project
 
-class User(var name: String, /*var password: String*/) {
+import java.io.Serializable
+
+class User(var name: String /*var password: String*/):Serializable {
 
     var distanceTravelled = 0.0
 
-    //Implement Monster-class before uncommenting this
-    //var monsterCollection: MutableList<Monster> = java.util.ArrayList()
+    var monsterCollection: MutableList<Monster> = java.util.ArrayList()
 
     override fun toString(): String {
         return "$name"
