@@ -20,6 +20,7 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -87,12 +88,11 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        Log.i("ARPROJECT", "Binding location service")
+        Log.i("ARPROJECT", "Binding location service to MainActivity")
         Intent(this, LocationService::class.java).also { intent ->
             bindService(intent, connection, Context.BIND_AUTO_CREATE)
         }
     }
-
 
     private fun createMonsterToView(): Monster {
         val spawner = MonsterSpawner(this)
@@ -180,7 +180,7 @@ class MainActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
         user?.distanceTravelled = locationService.distanceTravelled
-        Log.i("ARPROJECT", "Unbinding location service")
+        Log.i("ARPROJECT", "Unbinding location service from MainActivity")
         unbindService(connection)
         serviceIsBound = false
     }
