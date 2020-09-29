@@ -1,15 +1,12 @@
 package com.example.ar_project
 
 import android.Manifest
-import android.content.Context
-import android.content.SharedPreferences
+import android.content.*
 import android.content.pm.PackageManager
 import android.location.Location
-import android.location.LocationListener
-import android.location.LocationManager
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.IBinder
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -19,20 +16,33 @@ import com.google.ar.core.HitResult
 import com.google.ar.core.Plane
 import com.google.ar.sceneform.AnchorNode
 import com.google.ar.sceneform.HitTestResult
-import com.google.ar.sceneform.assets.RenderableSource
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import com.google.gson.Gson
 
-class MainActivity : AppCompatActivity(), LocationListener {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var fragment: ArFragment
+    private var locationService = LocationService()
+    private var serviceIsBound: Boolean = false
     private var testRenderable: ModelRenderable? = null
-    private var userLocation: Location? = null
+    var userLocation: Location? = null
     private var spawningLocation: Location? = null
-    private var distanceTravelled = 0.0
     private var user: User? = null
+
+    private val connection = object : ServiceConnection {
+
+        override fun onServiceConnected(className: ComponentName, service: IBinder) {
+            val binder = service as LocationService.LocalBinder
+            locationService = binder.getService()
+            serviceIsBound = true
+        }
+
+        override fun onServiceDisconnected(arg: ComponentName) {
+            serviceIsBound = false
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +51,6 @@ class MainActivity : AppCompatActivity(), LocationListener {
         user = intent.getSerializableExtra("userProfile") as User
 
         Log.i("ARPROJECT", "User ${user?.name} loaded")
-
 
         fragment = supportFragmentManager.findFragmentById(R.id.sceneform_fragment) as ArFragment
         fragment.arSceneView.scene.addOnUpdateListener {
@@ -71,11 +80,21 @@ class MainActivity : AppCompatActivity(), LocationListener {
             )
         }
 
-        val lm = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0f, this)
+        val intent = Intent(applicationContext, LocationService::class.java)
+        startService(intent)
     }
 
-    private fun createMonster(): Monster {
+    override fun onStart() {
+        super.onStart()
+
+        Log.i("ARPROJECT", "Binding location service")
+        Intent(this, LocationService::class.java).also { intent ->
+            bindService(intent, connection, Context.BIND_AUTO_CREATE)
+        }
+    }
+
+
+    private fun createMonsterToView(): Monster {
         val spawner = MonsterSpawner(this)
         val monsterToSpawn = spawner.createMonster(userLocation)
         testRenderable = monsterToSpawn.model
@@ -86,6 +105,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
     }
 
     private fun frameUpdate() {
+        userLocation = locationService.currentLocation
         val frame = fragment.arSceneView.arFrame
         val point = getScreenCenter()
         val hits: List<HitResult>
@@ -96,7 +116,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
                 val trackable = hit.trackable
                 if (trackable is Plane) {
                     if (getSpawningChance(100) && isSpawningAllowed()) {
-                        val monster= createMonster()
+                        val monster = createMonsterToView()
                         if (testRenderable != null) {
                             Log.i("ARPROJECT", "Model rendering")
                             spawningLocation = userLocation
@@ -141,25 +161,6 @@ class MainActivity : AppCompatActivity(), LocationListener {
         (return userLocation?.distanceTo(spawningLocation)!! > 50)
     }
 
-    override fun onLocationChanged(currentLocation: Location) {
-
-        if (userLocation != null) {
-            distanceTravelled += currentLocation.distanceTo(userLocation)
-            user?.distanceTravelled = distanceTravelled
-        }
-
-        userLocation = currentLocation
-    }
-
-    override fun onStatusChanged(p: String?, p1: Int, p2: Bundle?) {
-    }
-
-    override fun onProviderEnabled(p: String?) {
-    }
-
-    override fun onProviderDisabled(p: String?) {
-    }
-
     override fun onPause() {
         super.onPause()
 
@@ -174,5 +175,20 @@ class MainActivity : AppCompatActivity(), LocationListener {
         prefsEdit.apply()
 
         Log.i("ARPROJECT", "Saving profile...")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        user?.distanceTravelled = locationService.distanceTravelled
+        Log.i("ARPROJECT", "Unbinding location service")
+        unbindService(connection)
+        serviceIsBound = false
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        val intent = Intent(applicationContext, LocationService::class.java)
+        stopService(intent)
     }
 }
