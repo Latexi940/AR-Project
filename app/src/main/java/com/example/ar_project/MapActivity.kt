@@ -4,7 +4,6 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
-import android.location.Location
 import android.os.Bundle
 import android.os.Handler
 import android.os.IBinder
@@ -18,7 +17,6 @@ import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.overlay.Marker
 
 class MapActivity : AppCompatActivity() {
-
 
     private lateinit var mHandler: Handler
     private lateinit var mRunnable: Runnable
@@ -42,7 +40,7 @@ class MapActivity : AppCompatActivity() {
         setContentView(R.layout.activity_map)
 
         mHandler = Handler()
-        mRunnable = Runnable { updateMap()}
+        mRunnable = Runnable { updateMap() }
         mHandler.postDelayed(mRunnable, 1000)
 
         val ctx = applicationContext
@@ -72,7 +70,7 @@ class MapActivity : AppCompatActivity() {
         map.overlays.clear()
 
         val pos = locationService.currentLocation
-        if(pos != null) {
+        if (pos != null) {
             val geoPoint = GeoPoint(pos.latitude, pos.longitude)
             map.controller.setCenter(geoPoint)
 
