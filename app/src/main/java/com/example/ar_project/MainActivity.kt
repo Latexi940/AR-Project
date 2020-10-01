@@ -20,6 +20,8 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_main.*
+ var user: User? = null
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,7 +31,6 @@ class MainActivity : AppCompatActivity() {
     private var testRenderable: ModelRenderable? = null
     var userLocation: Location? = null
     private var spawningLocation: Location? = null
-    private var user: User? = null
 
     private val connection = object : ServiceConnection {
 
@@ -82,6 +83,11 @@ class MainActivity : AppCompatActivity() {
 
         val intent = Intent(applicationContext, LocationService::class.java)
         startService(intent)
+
+        profile_btn.setOnClickListener(){
+    val intent2 = Intent(this, ProfileActivity::class.java)
+            startActivity(intent2)
+        }
     }
 
     override fun onStart() {
