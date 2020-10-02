@@ -17,4 +17,18 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout="@layout/activity_main" />
 
+   
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+        android:id="@+id/map_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop= "10dp"
+        android:layout_marginStart="300dp"
+        app:srcCompat="@drawable/osm_ic_center_map"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,6 +20,7 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -82,6 +83,10 @@ class MainActivity : AppCompatActivity() {
 
         val intent = Intent(applicationContext, LocationService::class.java)
         startService(intent)
+
+        map_btn.setOnClickListener(){
+            switchToMap()
+        }
     }
 
     override fun onStart() {
@@ -189,5 +194,10 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         val intent = Intent(applicationContext, LocationService::class.java)
         stopService(intent)
+    }
+
+    fun switchToMap(){
+        val intent = Intent(this@MainActivity, MapActivity::class.java)
+        startActivity(intent)
     }
 }
