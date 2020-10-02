@@ -11,9 +11,9 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        monsters_btn.setOnClickListener() {
+       /* monsters_btn.setOnClickListener() {
              val intent = Intent(this, MonsterInventoryActivity::class.java)
             startActivity(intent)
-        }
+        } */
     }
 }

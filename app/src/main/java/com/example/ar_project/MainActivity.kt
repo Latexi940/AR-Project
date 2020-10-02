@@ -21,9 +21,9 @@ import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
- var user: User? = null
 
 class MainActivity : AppCompatActivity() {
+    private var user: User? = null
 
     private lateinit var fragment: ArFragment
     private var locationService = LocationService()
@@ -85,8 +85,7 @@ class MainActivity : AppCompatActivity() {
         startService(intent)
 
         profile_btn.setOnClickListener(){
-    val intent2 = Intent(this, ProfileActivity::class.java)
-            startActivity(intent2)
+            openProfile()
         }
     }
 
@@ -195,5 +194,10 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         val intent = Intent(applicationContext, LocationService::class.java)
         stopService(intent)
+    }
+
+    fun openProfile(){
+        val intent = Intent(this@MainActivity, ProfileActivity::class.java)
+        startActivity(intent)
     }
 }
