@@ -9,6 +9,6 @@ class User(var name: String /*var password: String*/):Serializable {
     var monsterCollection: MutableList<Monster> = java.util.ArrayList()
 
     override fun toString(): String {
-        return "$name"
+        return name
     }
 }

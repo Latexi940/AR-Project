@@ -80,6 +80,28 @@ class MainActivity : AppCompatActivity() {
                 0
             )
         }
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                0
+            )
+        }
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                0
+            )
+        }
 
         val intent = Intent(applicationContext, LocationService::class.java)
         startService(intent)
@@ -136,7 +158,6 @@ class MainActivity : AppCompatActivity() {
                                     "${monster.name} caught!",
                                     Toast.LENGTH_SHORT
                                 ).show()
-
                                 user?.monsterCollection?.add(monster)
                                 mNode.setParent(null)
                             }
@@ -196,7 +217,7 @@ class MainActivity : AppCompatActivity() {
         stopService(intent)
     }
 
-    fun switchToMap(){
+    private fun switchToMap(){
         val intent = Intent(this@MainActivity, MapActivity::class.java)
         startActivity(intent)
     }
