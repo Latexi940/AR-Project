@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout="@layout/activity_main" />
 
-   
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
 
