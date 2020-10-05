@@ -56,57 +56,12 @@ class MainActivity : AppCompatActivity() {
         fragment = supportFragmentManager.findFragmentById(R.id.sceneform_fragment) as ArFragment
         fragment.arSceneView.scene.addOnUpdateListener {
             frameUpdate()
-        }
-
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                0
-            )
-        }
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
-                0
-            )
-        }
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                0
-            )
-        }
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                0
-            )
-        }
+        } 
 
         val intent = Intent(applicationContext, LocationService::class.java)
         startService(intent)
 
-        map_btn.setOnClickListener(){
+        map_btn.setOnClickListener {
             switchToMap()
         }
     }
@@ -209,7 +164,6 @@ class MainActivity : AppCompatActivity() {
         unbindService(connection)
         serviceIsBound = false
     }
-
 
     override fun onDestroy() {
         super.onDestroy()
