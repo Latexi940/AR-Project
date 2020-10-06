@@ -3,7 +3,7 @@ package com.example.ar_project
 import android.location.Location
 import com.google.ar.sceneform.rendering.ModelRenderable
 
-class Monster(val name: String, val location: Location?, val model:ModelRenderable?) {
+class Monster(val name: String, val location: Location?) {
     var xp = 0
     var lvl = 1
 
