@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         loadProfile()
+        Toast.makeText(this,"Happy cathing ${user}!", Toast.LENGTH_SHORT).show()
 
         fragment = supportFragmentManager.findFragmentById(R.id.sceneform_fragment) as ArFragment
         fragment.arSceneView.scene.addOnUpdateListener {
@@ -165,7 +166,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun saveProfile() {
         if (user != null) {
-            user!!.distanceTravelled = locationService.distanceTravelled
+            user!!.distanceTravelled += locationService.distanceTravelled
+            locationService.distanceTravelled = 0.0
 
             val prefs: SharedPreferences = getSharedPreferences("PROFILE", MODE_PRIVATE)
             val prefsEdit: SharedPreferences.Editor = prefs.edit()
@@ -191,8 +193,15 @@ class MainActivity : AppCompatActivity() {
             Log.i("ARPROJECT", "User profile loaded to Main: $user.")
         } else {
             Log.i("ARPROJECT", "No user in SharedPreferences")
+            val i = Intent()
+            user = i.getSerializableExtra("userProfile") as User?
+            if(user != null){
+                Log.i("ARPROJECT", "$user loaded with intent")
+            }
         }
-
     }
 
+    override fun onBackPressed() {
+        moveTaskToBack(true)
+    }
 }
