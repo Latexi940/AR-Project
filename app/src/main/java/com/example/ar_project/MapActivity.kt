@@ -23,13 +23,11 @@ class MapActivity : AppCompatActivity() {
     private var locationService = LocationService()
     private var serviceIsBound: Boolean = false
     private val connection = object : ServiceConnection {
-
         override fun onServiceConnected(className: ComponentName, service: IBinder) {
             val binder = service as LocationService.LocalBinder
             locationService = binder.getService()
             serviceIsBound = true
         }
-
         override fun onServiceDisconnected(arg: ComponentName) {
             serviceIsBound = false
         }
@@ -66,7 +64,7 @@ class MapActivity : AppCompatActivity() {
         serviceIsBound = false
     }
 
-    fun updateMap() {
+    private fun updateMap() {
         map.overlays.clear()
 
         val pos = locationService.currentLocation

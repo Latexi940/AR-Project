@@ -19,9 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".ProfileActivity"></activity>
-        <activity android:name=".MonsterInventoryActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".MonsterInventoryActivity" />
         <activity android:name=".MapActivity">
 
         </activity>

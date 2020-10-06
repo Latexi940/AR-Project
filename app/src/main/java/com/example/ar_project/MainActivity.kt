@@ -1,8 +1,6 @@
 package com.example.ar_project
 
-import android.Manifest
 import android.content.*
-import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,7 +9,6 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import com.google.ar.core.HitResult
 import com.google.ar.core.Plane
 import com.google.ar.sceneform.AnchorNode
@@ -20,10 +17,10 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    private var user: User? = null
 
     private lateinit var fragment: ArFragment
     private var locationService = LocationService()
@@ -31,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     private var testRenderable: ModelRenderable? = null
     var userLocation: Location? = null
     private var spawningLocation: Location? = null
+    private var user: User? = null
 
     private val connection = object : ServiceConnection {
 
@@ -49,43 +47,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        user = intent.getSerializableExtra("userProfile") as User
-
-        Log.i("ARPROJECT", "User ${user?.name} loaded")
+        loadProfile()
 
         fragment = supportFragmentManager.findFragmentById(R.id.sceneform_fragment) as ArFragment
         fragment.arSceneView.scene.addOnUpdateListener {
             frameUpdate()
         }
 
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                0
-            )
-        }
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
-                0
-            )
-        }
-
         val intent = Intent(applicationContext, LocationService::class.java)
         startService(intent)
 
-        profile_btn.setOnClickListener(){
-            openProfile()
+        map_btn.setOnClickListener {
+            switchToMap()
         }
     }
 
@@ -101,9 +74,7 @@ class MainActivity : AppCompatActivity() {
     private fun createMonsterToView(): Monster {
         val spawner = MonsterSpawner(this)
         val monsterToSpawn = spawner.createMonster(userLocation)
-        testRenderable = monsterToSpawn.model
-
-        Log.i("ARPROJECT", "Monster spawned: ${monsterToSpawn.name}")
+        testRenderable = spawner.getModel()
 
         return monsterToSpawn
     }
@@ -114,15 +85,15 @@ class MainActivity : AppCompatActivity() {
         val point = getScreenCenter()
         val hits: List<HitResult>
 
-        if (frame != null && userLocation != null) {
+        if (frame != null && userLocation != null && user != null) {
             hits = frame.hitTest(point.x.toFloat(), point.y.toFloat())
             for (hit in hits) {
                 val trackable = hit.trackable
                 if (trackable is Plane) {
-                    if (getSpawningChance(100) && isSpawningAllowed()) {
+                    if (getSpawningChance(10) && isSpawningAllowed()) {
                         val monster = createMonsterToView()
                         if (testRenderable != null) {
-                            Log.i("ARPROJECT", "Model rendering")
+                            Log.i("ARPROJECT", "${monster.name} rendering")
                             spawningLocation = userLocation
                             val anchor = hit!!.createAnchor()
                             val anchorNode = AnchorNode(anchor)
@@ -131,14 +102,20 @@ class MainActivity : AppCompatActivity() {
                             mNode.setParent(anchorNode)
                             mNode.renderable = testRenderable
                             mNode.setOnTapListener { hitTestRes: HitTestResult?, motionEv: MotionEvent? ->
+                                Log.i("ARPROJECT", "Model tapped")
                                 Toast.makeText(
                                     this,
                                     "${monster.name} caught!",
                                     Toast.LENGTH_SHORT
                                 ).show()
 
-                              //  user?.monsterCollection?.add(monster)
+                                user?.monsterCollection?.add(monster)
+
                                 mNode.setParent(null)
+                                Log.i(
+                                    "ARPROJECT",
+                                    "Collection size is now: ${user?.monsterCollection?.size}"
+                                )
                             }
                             break
                         }
@@ -167,28 +144,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-
-        val prefs: SharedPreferences = getPreferences(MODE_PRIVATE)
-        val prefsEdit: SharedPreferences.Editor = prefs.edit()
-        val gson = Gson()
-
-        val newUser = user
-        val json = gson.toJson(newUser)
-
-        prefsEdit.putString("userProfile", json)
-        prefsEdit.apply()
-
-        Log.i("ARPROJECT", "Saving profile...")
+        saveProfile()
     }
 
     override fun onStop() {
         super.onStop()
-        user?.distanceTravelled = locationService.distanceTravelled
         Log.i("ARPROJECT", "Unbinding location service from MainActivity")
         unbindService(connection)
         serviceIsBound = false
     }
-
 
     override fun onDestroy() {
         super.onDestroy()
@@ -196,8 +160,41 @@ class MainActivity : AppCompatActivity() {
         stopService(intent)
     }
 
-    fun openProfile(){
-        val intent = Intent(this@MainActivity, ProfileActivity::class.java)
+    private fun switchToMap() {
+        val intent = Intent(this@MainActivity, MapActivity::class.java)
         startActivity(intent)
     }
+
+    private fun saveProfile() {
+        if (user != null) {
+            user!!.distanceTravelled = locationService.distanceTravelled
+
+            val prefs: SharedPreferences = getSharedPreferences("PROFILE", MODE_PRIVATE)
+            val prefsEdit: SharedPreferences.Editor = prefs.edit()
+            val gson = Gson()
+
+            val jsonUser = gson.toJson(user)
+            prefsEdit.putString("userProfile", jsonUser).apply()
+
+            Log.i("ARPROJECT", "Profile saved")
+        } else {
+            Log.i("ARPROJECT", "No user. Cannot save.")
+        }
+    }
+
+    private fun loadProfile() {
+        val prefs: SharedPreferences = getSharedPreferences("PROFILE", MODE_PRIVATE)
+        val gson = Gson()
+
+        val jsonUser = prefs.getString("userProfile", "no user")
+
+        if (jsonUser != "no user") {
+            user = gson.fromJson(jsonUser, User::class.java)
+            Log.i("ARPROJECT", "User profile loaded to Main: $user.")
+        } else {
+            Log.i("ARPROJECT", "No user in SharedPreferences")
+        }
+
+    }
+
 }
