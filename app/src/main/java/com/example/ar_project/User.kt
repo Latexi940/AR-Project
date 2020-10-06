@@ -1,7 +1,9 @@
 package com.example.ar_project
 
+import java.io.Serializable
 
-class User(var name: String /*var password: String*/) {
+
+class User(var name: String): Serializable {
 
     var distanceTravelled = 0.0
 

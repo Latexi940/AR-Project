@@ -1,6 +1,7 @@
 package com.example.ar_project
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
@@ -69,19 +70,20 @@ class StartActivity : AppCompatActivity() {
         val retrivedJson = prefs.getString("userProfile", "no user")
 
         //Uncomment this to clear user data
-        prefsEdit.clear().apply()
+        //prefsEdit.clear().apply()
 
         if (retrivedJson != "no user") {
             val userProfile = gson.fromJson(retrivedJson, User::class.java)
             Log.i("ARPROJECT", "User profile found: $userProfile")
+
             val intent = Intent(this@StartActivity, MainActivity::class.java)
+            //intent.putExtra("userProfile", userProfile)
             startActivity(intent)
         } else {
             Log.i("ARPROJECT", "User profile not found. Please create a new one.")
             usernameField.isEnabled = true
             startButton.isEnabled = true
         }
-
 
         startButton.setOnClickListener {
             if (usernameField.text != null) {
@@ -95,7 +97,9 @@ class StartActivity : AppCompatActivity() {
                 Log.i("ARPROJECT", "New user created")
 
                 val intent = Intent(this@StartActivity, MainActivity::class.java)
+                intent.putExtra("userProfile", newUser)
                 startActivity(intent)
+
             }
         }
     }
