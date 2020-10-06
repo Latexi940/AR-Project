@@ -137,7 +137,7 @@ class MainActivity : AppCompatActivity() {
                                     Toast.LENGTH_SHORT
                                 ).show()
 
-                                user?.monsterCollection?.add(monster)
+                              //  user?.monsterCollection?.add(monster)
                                 mNode.setParent(null)
                             }
                             break
