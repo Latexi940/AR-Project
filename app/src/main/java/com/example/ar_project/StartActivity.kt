@@ -67,10 +67,12 @@ class StartActivity : AppCompatActivity() {
         val prefs: SharedPreferences = getSharedPreferences("PROFILE", MODE_PRIVATE)
         val prefsEdit: SharedPreferences.Editor = prefs.edit()
         val gson = Gson()
-        val retrivedJson = prefs.getString("userProfile", "no user")
 
         //Uncomment this to clear user data
         //prefsEdit.clear().apply()
+
+        val retrivedJson = prefs.getString("userProfile", "no user")
+
 
         if (retrivedJson != "no user") {
             val userProfile = gson.fromJson(retrivedJson, User::class.java)
