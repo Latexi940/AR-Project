@@ -21,14 +21,14 @@ import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
+    private var user: User? = null
     private lateinit var fragment: ArFragment
     private var locationService = LocationService()
     private var serviceIsBound: Boolean = false
     private var testRenderable: ModelRenderable? = null
     var userLocation: Location? = null
     private var spawningLocation: Location? = null
-    private var user: User? = null
+
 
     private val connection = object : ServiceConnection {
 
@@ -60,6 +60,9 @@ class MainActivity : AppCompatActivity() {
 
         map_btn.setOnClickListener {
             switchToMap()
+        }
+        profile_btn.setOnClickListener{
+            switchToProfile()
         }
     }
 
@@ -163,6 +166,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun switchToMap() {
         val intent = Intent(this@MainActivity, MapActivity::class.java)
+        intent.putExtra("user",user)
+        startActivity(intent)
+    }
+
+    private  fun switchToProfile(){
+        val intent = Intent(this, ProfileActivity::class.java)
+       // intent.putExtra("User", user);
         startActivity(intent)
     }
 
