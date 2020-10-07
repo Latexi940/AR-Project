@@ -166,12 +166,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun switchToMap() {
         val intent = Intent(this@MainActivity, MapActivity::class.java)
-        intent.putExtra("user",user)
+        //intent.putExtra("user",user)
         startActivity(intent)
     }
 
     private  fun switchToProfile(){
-        val intent = Intent(this, ProfileActivity::class.java)
+        val intent = Intent(this@MainActivity, ProfileActivity::class.java)
        // intent.putExtra("User", user);
         startActivity(intent)
     }
@@ -205,11 +205,11 @@ class MainActivity : AppCompatActivity() {
             Log.i("ARPROJECT", "User profile loaded to Main: $user.")
         } else {
             Log.i("ARPROJECT", "No user in SharedPreferences")
-            val i = Intent()
+           /* val i = Intent()
             user = i.getSerializableExtra("userProfile") as User?
             if(user != null){
                 Log.i("ARPROJECT", "$user loaded with intent")
-            }
+            } */
         }
     }
 

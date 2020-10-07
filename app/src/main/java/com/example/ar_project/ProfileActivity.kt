@@ -16,7 +16,7 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-       // user= intent.getSerializableExtra("User") as User;
+
         loadProfile()
 
 
@@ -39,11 +39,7 @@ class ProfileActivity : AppCompatActivity() {
             Log.i("ARPROJECT", "User profile loaded to Main: $user.")
         } else {
             Log.i("ARPROJECT", "No user in SharedPreferences")
-            val i = Intent()
-            user = i.getSerializableExtra("userProfile") as User?
-            if(user != null){
-                Log.i("ARPROJECT", "$user loaded with intent")
-            }
+
         }
     }
 }

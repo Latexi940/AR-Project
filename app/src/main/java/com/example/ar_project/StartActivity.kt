@@ -63,16 +63,19 @@ class StartActivity : AppCompatActivity() {
                 0
             )
         }
-
+        Log.i("ARPROJECT", "TEST!")
         val prefs: SharedPreferences = getSharedPreferences("PROFILE", MODE_PRIVATE)
         val prefsEdit: SharedPreferences.Editor = prefs.edit()
         val gson = Gson()
 
+        Log.i("ARPROJECT", "TEST!2")
+
         //Uncomment this to clear user data
-        //prefsEdit.clear().apply()
+       // prefsEdit.clear().apply()
 
         val retrivedJson = prefs.getString("userProfile", "no user")
 
+        Log.i("ARPROJECT", "TEST!3")
 
         if (retrivedJson != "no user") {
             val userProfile = gson.fromJson(retrivedJson, User::class.java)
@@ -86,6 +89,7 @@ class StartActivity : AppCompatActivity() {
             usernameField.isEnabled = true
             startButton.isEnabled = true
         }
+        Log.i("ARPROJECT", "TEST!4")
 
         startButton.setOnClickListener {
             if (usernameField.text != null) {
