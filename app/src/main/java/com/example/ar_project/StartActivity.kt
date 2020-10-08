@@ -69,7 +69,7 @@ class StartActivity : AppCompatActivity() {
         val gson = Gson()
 
         //Uncomment this to clear user data
-        //prefsEdit.clear().apply()
+        prefsEdit.clear().apply()
 
         val retrivedJson = prefs.getString("userProfile", "no user")
 

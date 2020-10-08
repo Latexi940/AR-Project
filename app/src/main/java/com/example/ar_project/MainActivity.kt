@@ -1,14 +1,19 @@
 package com.example.ar_project
 
 import android.content.*
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.os.IBinder
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.ar.core.HitResult
 import com.google.ar.core.Plane
 import com.google.ar.sceneform.AnchorNode
@@ -17,8 +22,10 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
+import kotlin.math.sqrt
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,6 +36,14 @@ class MainActivity : AppCompatActivity() {
     var userLocation: Location? = null
     private var spawningLocation: Location? = null
     private var user: User? = null
+    private var mSensorManager: SensorManager? = null
+    private var mAccel = 0f
+    private var mAccelCurrent = 0f
+    private var mAccelLast = 0f
+    private var catchingInProgress = false
+    private var shakeDetected = false
+    private lateinit var mHandler: Handler
+    private lateinit var mRunnable: Runnable
 
     private val connection = object : ServiceConnection {
 
@@ -48,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         loadProfile()
-        Toast.makeText(this,"Happy catching ${user}!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Happy catching ${user}!", Toast.LENGTH_SHORT).show()
 
         fragment = supportFragmentManager.findFragmentById(R.id.sceneform_fragment) as ArFragment
         fragment.arSceneView.scene.addOnUpdateListener {
@@ -58,9 +73,40 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(applicationContext, LocationService::class.java)
         startService(intent)
 
+        mSensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        Objects.requireNonNull(mSensorManager)!!.registerListener(
+            mSensorListener, mSensorManager!!.getDefaultSensor(
+                Sensor.TYPE_ACCELEROMETER
+            ),
+            SensorManager.SENSOR_DELAY_NORMAL
+        );
+        mAccel = 10f;
+        mAccelCurrent = SensorManager.GRAVITY_EARTH;
+        mAccelLast = SensorManager.GRAVITY_EARTH;
+
         map_btn.setOnClickListener {
             switchToMap()
         }
+    }
+
+    private val mSensorListener: SensorEventListener = object : SensorEventListener {
+        override fun onSensorChanged(event: SensorEvent) {
+            val x = event.values[0]
+            val y = event.values[1]
+            val z = event.values[2]
+            mAccelLast = mAccelCurrent
+            mAccelCurrent = sqrt((x * x + y * y + z * z).toDouble()).toFloat()
+            val delta = mAccelCurrent - mAccelLast
+            mAccel = mAccel * 0.9f + delta
+            if (mAccel > 12) {
+                if(catchingInProgress){
+                    Log.i("ARPROJECT", "Shake detected")
+                    shakeDetected = true
+                }
+            }
+        }
+
+        override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
     }
 
     override fun onStart() {
@@ -104,17 +150,7 @@ class MainActivity : AppCompatActivity() {
                             mNode.renderable = testRenderable
                             mNode.setOnTapListener { hitTestRes: HitTestResult?, motionEv: MotionEvent? ->
                                 Log.i("ARPROJECT", "Model tapped")
-                                Toast.makeText(
-                                    this,
-                                    "${monster.name} caught!",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                user?.monsterCollection?.add(monster)
-                                mNode.setParent(null)
-                                Log.i(
-                                    "ARPROJECT",
-                                    "Collection size is now: ${user?.monsterCollection?.size}"
-                                )
+                                catchMonster(monster, mNode)
                             }
                             break
                         }
@@ -141,8 +177,17 @@ class MainActivity : AppCompatActivity() {
         (return userLocation?.distanceTo(spawningLocation)!! > 50)
     }
 
+    override fun onResume() {
+        super.onResume()
+        mSensorManager!!.registerListener(
+            mSensorListener, mSensorManager!!.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+            SensorManager.SENSOR_DELAY_NORMAL
+        );
+    }
+
     override fun onPause() {
         super.onPause()
+        mSensorManager!!.unregisterListener(mSensorListener);
         saveProfile()
     }
 
@@ -195,11 +240,43 @@ class MainActivity : AppCompatActivity() {
             Log.i("ARPROJECT", "No user in SharedPreferences")
             val i = Intent()
             user = i.getSerializableExtra("userProfile") as User?
-            if(user != null){
+            if (user != null) {
                 Log.i("ARPROJECT", "$user loaded with intent")
             }
         }
     }
+
+    private fun catchMonster(monster: Monster, node: TransformableNode) {
+        catchingInProgress = true
+        shake_text.visibility = View.VISIBLE
+
+        mHandler = Handler()
+        mRunnable = Runnable { detectShake(monster, node) }
+        mHandler.postDelayed(mRunnable, 200)
+
+    }
+
+    private fun detectShake(monster:Monster, node:TransformableNode) {
+        if(shakeDetected){
+            Toast.makeText(
+                this,
+                "${monster.name} caught!",
+                Toast.LENGTH_SHORT
+            ).show()
+            user?.monsterCollection?.add(monster)
+            node.setParent(null)
+            Log.i(
+                "ARPROJECT",
+                "Collection size is now: ${user?.monsterCollection?.size}"
+            )
+            shake_text.visibility = View.GONE
+            catchingInProgress = false
+            shakeDetected = false
+        }else{
+            mHandler.postDelayed(mRunnable, 200)
+        }
+    }
+
 
     override fun onBackPressed() {
         moveTaskToBack(true)

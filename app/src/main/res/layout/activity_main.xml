@@ -17,8 +17,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout="@layout/activity_main" />
 
-
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
 
         android:id="@+id/map_btn"
@@ -30,5 +28,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.textview.MaterialTextView
+
+        android:id="@+id/shake_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Shake the device!"
+        android:visibility="gone"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:shadowColor="#000000"
+        android:shadowDx="1.5"
+        android:shadowDy="1.3"
+        android:shadowRadius="1.6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/osm_ic_center_map" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
