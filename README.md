@@ -3,16 +3,18 @@ School project. Simple Pokemon Go clone. (WIP)
 
 Project requirments we have implemented: 
 
-  Phone’s internal sensor (accelerometer)
+  -Phone’s internal sensor (accelerometer)
 
-  Basic components (activity, service)
+  -Basic components (activity, service)
 
-  Fragments
+  -Fragments
 
-  Persistence (SharedPreferences)
+  -Persistence (SharedPreferences)
 
-  Have AR related functionality
+  -Have AR related functionality
 
-  GPS, camera
+  -GPS
+  
+  -Camera
 
-  map
+  -Map
