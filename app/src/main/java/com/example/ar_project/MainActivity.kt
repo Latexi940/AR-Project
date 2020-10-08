@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity() {
             for (hit in hits) {
                 val trackable = hit.trackable
                 if (trackable is Plane) {
-                    if (getSpawningChance(10) && isSpawningAllowed()) {
+                    if (getSpawningChance(90) && isSpawningAllowed()) {
                         val monster = createMonsterToView()
                         if (testRenderable != null) {
                             Log.i("ARPROJECT", "${monster.name} rendering")

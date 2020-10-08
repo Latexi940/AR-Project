@@ -4,29 +4,41 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_monster_inventory.*
 
 class MonsterInventoryActivity : AppCompatActivity()  {
     private var user : User? = null
-private var monstersList = user?.monsterCollection
+private var monstersList : MutableList<Monster>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_monster_inventory)
 
     loadProfile()
 
-
+        monstersList = user?.monsterCollection
 
 
       val amountOfMonsters =  user?.monsterCollection?.size
 
         tv_monsters.text = "Monsters collected: $amountOfMonsters"
+        tv_monsters.setOnClickListener{
+            switchToMonsterView()
+
+        }
 
         val monstersAdapter = monstersList?.let { MonstersAdapter(this, it) }
 
         lv_monsters.adapter = monstersAdapter
+
+        lv_monsters.setOnItemClickListener { parent, view, position, id ->
+
+
+
+
+        }
 
 
     }
@@ -44,5 +56,8 @@ private var monstersList = user?.monsterCollection
 
         }
     }
-
+    private fun switchToMonsterView() {
+        val intent = Intent(this, DisplayMonsterActivity::class.java)
+        startActivity(intent)
+    }
 }
