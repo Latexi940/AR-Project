@@ -2,6 +2,7 @@ package com.example.ar_project
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.wifi.WifiConfiguration.AuthAlgorithm.strings
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +22,7 @@ class ProfileActivity : AppCompatActivity() {
 
 
          tv_name.text = user!!.name
+        tv_distance_traveled.text =getString(R.string.distance_traveled) + user!!.distanceTravelled.toString()
        monsters_btn.setOnClickListener() {
              val intent = Intent(this, MonsterInventoryActivity::class.java)
           // intent.putExtra("User", user);

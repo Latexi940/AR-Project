@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_monster_inventory.*
+import kotlinx.android.synthetic.main.monster_list_item.*
 
 class MonsterInventoryActivity : AppCompatActivity()  {
     private var user : User? = null
@@ -26,10 +27,11 @@ private var monstersList : MutableList<Monster>? = null
 
         tv_monsters.text = "Monsters collected: $amountOfMonsters"
 
-        tv_monsters.setOnClickListener{
+      /*  tv_monsters.setOnClickListener{
             switchToMonsterView()
-
         }
+
+       */
 
         val monstersAdapter = monstersList?.let { MonstersAdapter(this, it) }
 
@@ -37,7 +39,8 @@ private var monstersList : MutableList<Monster>? = null
 
         lv_monsters.setOnItemClickListener { parent, view, position, id ->
 
-            monsterName = this.monsterName
+            monsterName = tv_name.text as String?
+           Log.i("ARPROJECT",monsterName)
 
 
             switchToMonsterView()
@@ -61,7 +64,7 @@ private var monstersList : MutableList<Monster>? = null
         }
     }
     private fun switchToMonsterView() {
-        val intent = Intent(this, DisplayMonsterActivity::class.java)
+        val intent = Intent(this@MonsterInventoryActivity, DisplayMonsterActivity::class.java)
         intent.putExtra("monsterName",monsterName)
         startActivity(intent)
     }

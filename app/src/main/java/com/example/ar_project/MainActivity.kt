@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         loadProfile()
-        Toast.makeText(this,"Happy catching ${user}!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this,"${getString(R.string.welcome_toast)} ${user}!", Toast.LENGTH_SHORT).show()
 
         fragment = supportFragmentManager.findFragmentById(R.id.sceneform_fragment) as ArFragment
         fragment.arSceneView.scene.addOnUpdateListener {

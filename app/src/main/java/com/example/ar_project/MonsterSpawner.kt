@@ -8,30 +8,37 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 
 class MonsterSpawner(private val context: Context) {
 
-    val monsterNames = listOf("Avocado", "Cesium", "Ballero")
-
+    val monsterNames = listOf("longcatto", "ugly")
+    private var monsterName: String? = null
+    private var modelUri : Uri? = null
 
     fun createMonster(pos: Location?): Monster {
-        /*val rnd = (0..2).random()*/
+        val rnd = (0..1).random()
 
-        /*var monsterName = monsterNames[rnd]*/
+         monsterName = monsterNames[rnd]
 
-        val monsterName = "Avocado"
+      //  val monsterName = "Avocado"
 
-        return Monster(monsterName, pos)
+        return Monster(monsterName!!, pos)
     }
 
     fun getModel(): ModelRenderable? {
         var testRenderable: ModelRenderable? = null
-        val modelUri =
-            Uri.parse("https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Avocado/glTF/Avocado.gltf")
+
+        if (monsterName == "longcatto"){
+            modelUri = Uri.parse("longcatto.gltf")
+        } else if(monsterName == "ugly") {
+            modelUri = Uri.parse("monster1.gltf")
+        }
+
+
 
         val renderableFuture = ModelRenderable.builder()
             .setSource(
                 context, RenderableSource.builder().setSource(
                     context, modelUri, RenderableSource.SourceType.GLTF2
                 )
-                    .setScale(2.0f)
+                    .setScale(0.05f)
                     .setRecenterMode(RenderableSource.RecenterMode.ROOT)
                     .build()
             )

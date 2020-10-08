@@ -2,7 +2,9 @@ package com.example.ar_project
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.ar.core.HitResult
 import com.google.ar.core.Plane
@@ -12,6 +14,8 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import kotlinx.android.synthetic.main.activity_display_monster.*
+
+
 
 private lateinit var monsterFragment: ArFragment
 private var testRenderable: ModelRenderable? = null
@@ -25,26 +29,20 @@ class DisplayMonsterActivity :  AppCompatActivity() {
         setContentView(R.layout.activity_display_monster)
         monsterFragment = supportFragmentManager.findFragmentById(R.id.arImage_fragment) as ArFragment
 
-        monsterName = intent.getStringExtra("monsterName")
-
+        monsterName = intent.getStringExtra("monsterName") //TÄÄ KUSEE
+        Log.i("ARPROJECT","monsterin nimi: ${monsterName}")
 
 
         spawn_btn.setOnClickListener{
             addObject()
         }
 
-       /* if(monsterName == "avocado") {
-            modelUri =
-                Uri.parse("https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Avocado/glTF/Avocado.gltf")
-        } else if (monsterName == "something else"){
-            //other monster
+        if(monsterName == "longcatto") {
+            modelUri = Uri.parse("longcatto.gltf")
+        } else if (monsterName == "ugly"){
+            modelUri = Uri.parse("monster1.gltf")
         }
 
-        */
-
-
-        modelUri = Uri.parse("longcatto.gltf")
-            //Uri.parse("monster1.gltf") //tää toimii
 
 
 

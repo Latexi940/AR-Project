@@ -31,13 +31,9 @@ class MonstersAdapter(context: Context, private val monsters: MutableList<Monste
 
         var tv = rowView.findViewById(R.id.tv_name) as TextView
         tv.text = thisMonster.name
-       // monsterName = thisMonster.name
-/*
-        tv = rowView.findViewById(R.id.tvStartDuty) as TextView
-        tv.text = Integer.toString(thisMonster.startDuty)
 
-        tv = rowView.findViewById(R.id.tvEndDuty) as TextView
-        tv.text = Integer.toString(thisMonster.endDuty)
+/*
+
 */
         return rowView
     }
