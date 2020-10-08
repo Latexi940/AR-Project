@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_monster_inventory.*
 
 class MonsterInventoryActivity : AppCompatActivity()  {
     private var user : User? = null
+    private var monsterName : String? = null
 private var monstersList : MutableList<Monster>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +25,7 @@ private var monstersList : MutableList<Monster>? = null
       val amountOfMonsters =  user?.monsterCollection?.size
 
         tv_monsters.text = "Monsters collected: $amountOfMonsters"
+
         tv_monsters.setOnClickListener{
             switchToMonsterView()
 
@@ -35,8 +37,10 @@ private var monstersList : MutableList<Monster>? = null
 
         lv_monsters.setOnItemClickListener { parent, view, position, id ->
 
+            monsterName = this.monsterName
 
 
+            switchToMonsterView()
 
         }
 
@@ -58,6 +62,7 @@ private var monstersList : MutableList<Monster>? = null
     }
     private fun switchToMonsterView() {
         val intent = Intent(this, DisplayMonsterActivity::class.java)
+        intent.putExtra("monsterName",monsterName)
         startActivity(intent)
     }
 }

@@ -9,6 +9,11 @@ sceneform.asset('sampledata/monster1/monster1.gltf', // 'Source Asset Path' spec
         'sampledata/monster1/monster1.sfa',         // '.sfa Output Path' specified during import.
         'src/main/assets/monster1')
 
+sceneform.asset('sampledata/longcatto/longcatto.gltf', // 'Source Asset Path' specified during import.
+        'default',                            // 'Material Path' specified during import.
+        'sampledata/longcatto/longcatto.sfa',         // '.sfa Output Path' specified during import.
+        'src/main/assets/longcatto')
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"

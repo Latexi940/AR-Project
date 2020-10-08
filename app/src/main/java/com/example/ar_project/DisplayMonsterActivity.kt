@@ -17,28 +17,44 @@ private lateinit var monsterFragment: ArFragment
 private var testRenderable: ModelRenderable? = null
 
 class DisplayMonsterActivity :  AppCompatActivity() {
+    private var monsterName : String? = null
+    private var modelUri: Uri? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_monster)
         monsterFragment = supportFragmentManager.findFragmentById(R.id.arImage_fragment) as ArFragment
 
+        monsterName = intent.getStringExtra("monsterName")
+
+
+
         spawn_btn.setOnClickListener{
             addObject()
         }
 
+       /* if(monsterName == "avocado") {
+            modelUri =
+                Uri.parse("https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Avocado/glTF/Avocado.gltf")
+        } else if (monsterName == "something else"){
+            //other monster
+        }
+
+        */
+
+
+        modelUri = Uri.parse("longcatto.gltf")
+            //Uri.parse("monster1.gltf") //tää toimii
 
 
 
-
-        var modelUri =
-            Uri.parse("")
 
         val renderableFuture = ModelRenderable.builder()
             .setSource(
                 this, RenderableSource.builder().setSource(
                     this, modelUri, RenderableSource.SourceType.GLTF2
                 )
-                    .setScale(1.3f)
+                    .setScale(0.05f)
                     .setRecenterMode(RenderableSource.RecenterMode.ROOT)
                     .build()
             )

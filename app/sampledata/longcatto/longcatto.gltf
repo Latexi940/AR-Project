@@ -1,0 +1,1011 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.3.48",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "name" : "Camera",
+            "rotation" : [
+                0.483536034822464,
+                0.33687159419059753,
+                -0.20870360732078552,
+                0.7804827094078064
+            ],
+            "translation" : [
+                7.358891487121582,
+                4.945772647857666,
+                6.925790786743164
+            ]
+        },
+        {
+            "mesh" : 0,
+            "name" : "Quad Sphere.001",
+            "scale" : [
+                1,
+                0.6938721537590027,
+                0.5760629177093506
+            ],
+            "translation" : [
+                -0.1479833722114563,
+                -0.5639986991882324,
+                1.2818481922149658
+            ]
+        },
+        {
+            "mesh" : 1,
+            "name" : "Quad Sphere.002",
+            "scale" : [
+                1,
+                2.7772746086120605,
+                1.003410816192627
+            ],
+            "translation" : [
+                -0.06245724856853485,
+                2.762392044067383,
+                0.21245062351226807
+            ]
+        },
+        {
+            "mesh" : 2,
+            "name" : "Quad Sphere.003",
+            "rotation" : [
+                -0.026954660192131996,
+                -0.09139192849397659,
+                -0.0008282435010187328,
+                0.9954497814178467
+            ],
+            "scale" : [
+                0.666281521320343,
+                0.6056596040725708,
+                0.8579152226448059
+            ],
+            "translation" : [
+                -0.22767400741577148,
+                5.774806022644043,
+                0.16132047772407532
+            ]
+        },
+        {
+            "mesh" : 3,
+            "name" : "Quad Sphere.004",
+            "rotation" : [
+                0.003996741026639938,
+                -0.0057045649737119675,
+                0.0010739106219261885,
+                0.9999752640724182
+            ],
+            "scale" : [
+                0.3273387551307678,
+                0.2975556254386902,
+                0.32733869552612305
+            ],
+            "translation" : [
+                -0.9465056657791138,
+                3.655971050262451,
+                0.8407648801803589
+            ]
+        },
+        {
+            "mesh" : 4,
+            "name" : "Quad Sphere.005",
+            "rotation" : [
+                0.003996741026639938,
+                -0.0057045649737119675,
+                0.0010739106219261885,
+                0.9999752640724182
+            ],
+            "scale" : [
+                0.3273387551307678,
+                0.2975556254386902,
+                0.32733869552612305
+            ],
+            "translation" : [
+                -1.062496542930603,
+                3.726182699203491,
+                -0.592074990272522
+            ]
+        },
+        {
+            "mesh" : 5,
+            "name" : "Quad Sphere.006",
+            "rotation" : [
+                0.003996741026639938,
+                -0.0057045649737119675,
+                0.0010739106219261885,
+                0.9999752640724182
+            ],
+            "scale" : [
+                0.3273387551307678,
+                0.2975556254386902,
+                0.32733869552612305
+            ],
+            "translation" : [
+                -1.062496542930603,
+                3.726182699203491,
+                -0.592074990272522
+            ]
+        },
+        {
+            "mesh" : 6,
+            "name" : "Quad Sphere.007",
+            "rotation" : [
+                0.003996741026639938,
+                -0.0057045649737119675,
+                0.0010739106219261885,
+                0.9999752640724182
+            ],
+            "scale" : [
+                0.09515638649463654,
+                0.08649852126836777,
+                0.09515637159347534
+            ],
+            "translation" : [
+                -0.7648451328277588,
+                5.952174663543701,
+                -0.6485447883605957
+            ]
+        },
+        {
+            "mesh" : 7,
+            "name" : "Quad Sphere.008",
+            "rotation" : [
+                0.003996741026639938,
+                -0.0057045649737119675,
+                0.0010739106219261885,
+                0.9999752640724182
+            ],
+            "scale" : [
+                0.09515638649463654,
+                0.08649852126836777,
+                0.09515637159347534
+            ],
+            "translation" : [
+                -0.8576824069023132,
+                5.902384281158447,
+                0.6737326383590698
+            ]
+        },
+        {
+            "mesh" : 8,
+            "name" : "Quad Sphere.009",
+            "rotation" : [
+                0.003996741026639938,
+                -0.0057045649737119675,
+                0.0010739106219261885,
+                0.9999752640724182
+            ],
+            "scale" : [
+                0.09515638649463654,
+                0.08649852126836777,
+                0.09515637159347534
+            ],
+            "translation" : [
+                -1.1340748071670532,
+                6.107968330383301,
+                0.1040668785572052
+            ]
+        },
+        {
+            "mesh" : 9,
+            "name" : "Quad Sphere.010",
+            "rotation" : [
+                -0.12493675947189331,
+                0.5308112502098083,
+                -0.14371861517429352,
+                0.825817883014679
+            ],
+            "scale" : [
+                0.5824260711669922,
+                0.03605106100440025,
+                -0.004276971332728863
+            ],
+            "translation" : [
+                0.049886394292116165,
+                5.799123287200928,
+                -1.4001773595809937
+            ]
+        },
+        {
+            "mesh" : 10,
+            "name" : "Quad Sphere.011",
+            "rotation" : [
+                -0.24469223618507385,
+                0.392007052898407,
+                -0.10146601498126984,
+                0.8810000419616699
+            ],
+            "scale" : [
+                0.5824260711669922,
+                0.03605106100440025,
+                -0.004276971332728863
+            ],
+            "translation" : [
+                -1.3730281591415405,
+                6.24021577835083,
+                1.2224745750427246
+            ]
+        },
+        {
+            "mesh" : 11,
+            "name" : "Quad Sphere.012",
+            "rotation" : [
+                -0.175480455160141,
+                0.5832522511482239,
+                -0.13972444832324982,
+                0.7807051539421082
+            ],
+            "scale" : [
+                0.5824260711669922,
+                0.03605106100440025,
+                -0.004276971332728863
+            ],
+            "translation" : [
+                -0.006268739700317383,
+                5.4476189613342285,
+                -1.430726170539856
+            ]
+        },
+        {
+            "mesh" : 12,
+            "name" : "Quad Sphere.013",
+            "rotation" : [
+                -0.19297747313976288,
+                0.3093181848526001,
+                -0.08015552163124084,
+                0.9277160167694092
+            ],
+            "scale" : [
+                0.5824260711669922,
+                0.03605106100440025,
+                -0.004276971332728863
+            ],
+            "translation" : [
+                -1.3768644332885742,
+                5.9210100173950195,
+                1.0596593618392944
+            ]
+        },
+        {
+            "mesh" : 13,
+            "name" : "Quad Sphere.014",
+            "scale" : [
+                1,
+                0.6938721537590027,
+                0.5760629177093506
+            ],
+            "translation" : [
+                -0.1479833722114563,
+                -0.5639986991882324,
+                -0.8970175981521606
+            ]
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                0,
+                0,
+                0
+            ],
+            "name" : "Material",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929,
+                    1
+                ],
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.4000000059604645
+            }
+        },
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                0,
+                0,
+                0
+            ],
+            "name" : "Material.001",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929,
+                    1
+                ],
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.4000000059604645
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Quad Sphere.001",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1
+                    },
+                    "indices" : 2,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Quad Sphere.002",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 3,
+                        "NORMAL" : 4
+                    },
+                    "indices" : 2,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Quad Sphere.003",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 5,
+                        "NORMAL" : 6
+                    },
+                    "indices" : 7,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Quad Sphere.004",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 8,
+                        "NORMAL" : 9
+                    },
+                    "indices" : 2,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Quad Sphere.005",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 10,
+                        "NORMAL" : 11
+                    },
+                    "indices" : 2,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Quad Sphere.006",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 12,
+                        "NORMAL" : 13
+                    },
+                    "indices" : 2,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Quad Sphere.007",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 14,
+                        "NORMAL" : 15
+                    },
+                    "indices" : 2,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Quad Sphere.009",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 16,
+                        "NORMAL" : 17
+                    },
+                    "indices" : 2,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Quad Sphere.010",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 18,
+                        "NORMAL" : 19
+                    },
+                    "indices" : 2,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Quad Sphere.011",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 20,
+                        "NORMAL" : 21
+                    },
+                    "indices" : 2,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Quad Sphere.012",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 22,
+                        "NORMAL" : 23
+                    },
+                    "indices" : 2,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Quad Sphere.013",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 24,
+                        "NORMAL" : 25
+                    },
+                    "indices" : 2,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Quad Sphere.014",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 26,
+                        "NORMAL" : 27
+                    },
+                    "indices" : 2,
+                    "material" : 0
+                }
+            ]
+        },
+        {
+            "name" : "Quad Sphere.015",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 28,
+                        "NORMAL" : 29
+                    },
+                    "indices" : 2,
+                    "material" : 1
+                }
+            ]
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 98304,
+            "max" : [
+                1.2845726013183594,
+                1.2845723628997803,
+                1.2845726013183594
+            ],
+            "min" : [
+                -1.2845723628997803,
+                -1.2845726013183594,
+                -1.2845726013183594
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 98304,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5125,
+            "count" : 147456,
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5126,
+            "count" : 98304,
+            "max" : [
+                1.2845726013183594,
+                1.2845723628997803,
+                1.2845726013183594
+            ],
+            "min" : [
+                -1.2845723628997803,
+                -1.2845726013183594,
+                -1.2845726013183594
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5126,
+            "count" : 98304,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 5,
+            "componentType" : 5126,
+            "count" : 98304,
+            "max" : [
+                1.2842624187469482,
+                1.6966842412948608,
+                1.2856066226959229
+            ],
+            "min" : [
+                -1.2842622995376587,
+                -1.2843973636627197,
+                -1.2849197387695312
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 6,
+            "componentType" : 5126,
+            "count" : 98304,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 7,
+            "componentType" : 5125,
+            "count" : 147456,
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 8,
+            "componentType" : 5126,
+            "count" : 98304,
+            "max" : [
+                1.2845726013183594,
+                1.2845723628997803,
+                1.2845726013183594
+            ],
+            "min" : [
+                -1.2845723628997803,
+                -1.2845726013183594,
+                -1.2845726013183594
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 9,
+            "componentType" : 5126,
+            "count" : 98304,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 10,
+            "componentType" : 5126,
+            "count" : 98304,
+            "max" : [
+                1.2845726013183594,
+                1.2845723628997803,
+                1.2845726013183594
+            ],
+            "min" : [
+                -1.2845723628997803,
+                -1.2845726013183594,
+                -1.2845726013183594
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 11,
+            "componentType" : 5126,
+            "count" : 98304,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 12,
+            "componentType" : 5126,
+            "count" : 98304,
+            "max" : [
+                1.2845726013183594,
+                1.2845723628997803,
+                1.2845726013183594
+            ],
+            "min" : [
+                -1.2845723628997803,
+                -1.2845726013183594,
+                -1.2845726013183594
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 13,
+            "componentType" : 5126,
+            "count" : 98304,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 14,
+            "componentType" : 5126,
+            "count" : 98304,
+            "max" : [
+                1.2845726013183594,
+                1.2845723628997803,
+                1.2845726013183594
+            ],
+            "min" : [
+                -1.2845723628997803,
+                -1.2845726013183594,
+                -1.2845726013183594
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 15,
+            "componentType" : 5126,
+            "count" : 98304,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 16,
+            "componentType" : 5126,
+            "count" : 98304,
+            "max" : [
+                1.2845726013183594,
+                1.2845723628997803,
+                1.2845726013183594
+            ],
+            "min" : [
+                -1.2845723628997803,
+                -1.2845726013183594,
+                -1.2845726013183594
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 17,
+            "componentType" : 5126,
+            "count" : 98304,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 18,
+            "componentType" : 5126,
+            "count" : 98304,
+            "max" : [
+                1.2845726013183594,
+                1.2845723628997803,
+                1.2845726013183594
+            ],
+            "min" : [
+                -1.2845723628997803,
+                -1.2845726013183594,
+                -1.2845726013183594
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 19,
+            "componentType" : 5126,
+            "count" : 98304,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 20,
+            "componentType" : 5126,
+            "count" : 98304,
+            "max" : [
+                1.2845726013183594,
+                1.2845723628997803,
+                1.2845726013183594
+            ],
+            "min" : [
+                -1.2845723628997803,
+                -1.2845726013183594,
+                -1.2845726013183594
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 21,
+            "componentType" : 5126,
+            "count" : 98304,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 22,
+            "componentType" : 5126,
+            "count" : 98304,
+            "max" : [
+                1.2845726013183594,
+                1.2845723628997803,
+                1.2845726013183594
+            ],
+            "min" : [
+                -1.2845723628997803,
+                -1.2845726013183594,
+                -1.2845726013183594
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 23,
+            "componentType" : 5126,
+            "count" : 98304,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 24,
+            "componentType" : 5126,
+            "count" : 98304,
+            "max" : [
+                1.2845726013183594,
+                1.2845723628997803,
+                1.2845726013183594
+            ],
+            "min" : [
+                -1.2845723628997803,
+                -1.2845726013183594,
+                -1.2845726013183594
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 25,
+            "componentType" : 5126,
+            "count" : 98304,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 26,
+            "componentType" : 5126,
+            "count" : 98304,
+            "max" : [
+                1.2845726013183594,
+                1.2845723628997803,
+                1.2845726013183594
+            ],
+            "min" : [
+                -1.2845723628997803,
+                -1.2845726013183594,
+                -1.2845726013183594
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 27,
+            "componentType" : 5126,
+            "count" : 98304,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 28,
+            "componentType" : 5126,
+            "count" : 98304,
+            "max" : [
+                1.2845726013183594,
+                1.2845723628997803,
+                1.2845726013183594
+            ],
+            "min" : [
+                -1.2845723628997803,
+                -1.2845726013183594,
+                -1.2845726013183594
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 29,
+            "componentType" : 5126,
+            "count" : 98304,
+            "type" : "VEC3"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 1179648
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 589824,
+            "byteOffset" : 2359296
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 2949120
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 4128768
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 5308416
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 6488064
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 589824,
+            "byteOffset" : 7667712
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 8257536
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 9437184
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 10616832
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 11796480
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 12976128
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 14155776
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 15335424
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 16515072
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 17694720
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 18874368
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 20054016
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 21233664
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 22413312
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 23592960
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 24772608
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 25952256
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 27131904
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 28311552
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 29491200
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 30670848
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 31850496
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1179648,
+            "byteOffset" : 33030144
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 34209792,
+            "uri" : "longcatto.bin"
+        }
+    ]
+}
