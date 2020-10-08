@@ -11,7 +11,7 @@ Project requirments we have implemented:
 
   -Persistence (SharedPreferences)
 
-  -Have AR related functionality
+  -AR related functionality
 
   -GPS
   
