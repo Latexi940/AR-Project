@@ -7,4 +7,5 @@
     <string name="monster_inventory_btn">Monster inventory</string>
     <string name="distance_traveled">Distance traveled:</string>
     <string name="welcome_toast">Happy catching</string>
+    <string name="toast_caught">Caught</string>
 </resources>

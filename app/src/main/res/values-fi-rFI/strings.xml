@@ -8,6 +8,8 @@
     <string name="monster_inventory_btn">Monsteri kokoelma</string>
     <string name="distance_traveled">Kuljettu matka:</string>
     <string name="welcome_toast">Hauskaa metsästystä</string>
+    <string name="toast_caught">Napattu</string>
+
 
 
 </resources>

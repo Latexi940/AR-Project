@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity() {
                                 Log.i("ARPROJECT", "Model tapped")
                                 Toast.makeText(
                                     this,
-                                    "${monster.name} caught!",
+                                    "${monster.name} ${R.string.toast_caught}",
                                     Toast.LENGTH_SHORT
                                 ).show()
 
