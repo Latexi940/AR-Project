@@ -71,11 +71,9 @@ class StartActivity : AppCompatActivity() {
         Log.i("ARPROJECT", "TEST!2")
 
         //Uncomment this to clear user data
-<<<<<<< HEAD
+
         prefsEdit.clear().apply()
-=======
-       // prefsEdit.clear().apply()
->>>>>>> rasmus
+
 
         val retrivedJson = prefs.getString("userProfile", "no user")
 
