@@ -8,26 +8,26 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 
 class MonsterSpawner(private val context: Context) {
 
-    val monsterNames = listOf("longcatto", "ugly")
-    private var monsterName: String? = null
+    val monsterNames = listOf("Longcatto", "Ugly")
+   // private var monsterName: String? = null
     private var modelUri : Uri? = null
 
     fun createMonster(pos: Location?): Monster {
         val rnd = (0..1).random()
 
-         monsterName = monsterNames[rnd]
+        var monsterName = monsterNames[rnd]
 
       //  val monsterName = "Avocado"
 
-        return Monster(monsterName!!, pos)
+        return Monster(monsterName, pos)
     }
 
-    fun getModel(): ModelRenderable? {
+    fun getModel(m: Monster): ModelRenderable? {
         var testRenderable: ModelRenderable? = null
 
-        if (monsterName == "longcatto"){
+        if (m.name == "Longcatto"){
             modelUri = Uri.parse("longcatto.gltf")
-        } else if(monsterName == "ugly") {
+        } else if(m.name == "Ugly") {
             modelUri = Uri.parse("monster1.gltf")
         }
 

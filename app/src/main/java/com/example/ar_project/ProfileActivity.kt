@@ -22,7 +22,7 @@ class ProfileActivity : AppCompatActivity() {
 
 
          tv_name.text = user!!.name
-        tv_distance_traveled.text =getString(R.string.distance_traveled) + user!!.distanceTravelled.toString()
+        tv_distance_traveled.text =getString(R.string.distance_traveled) +" "+ user!!.distanceTravelled.toString()+ " m"
        monsters_btn.setOnClickListener() {
              val intent = Intent(this, MonsterInventoryActivity::class.java)
           // intent.putExtra("User", user);

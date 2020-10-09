@@ -127,7 +127,7 @@ class MainActivity : AppCompatActivity() {
     private fun createMonsterToView(): Monster {
         val spawner = MonsterSpawner(this)
         val monsterToSpawn = spawner.createMonster(userLocation)
-        testRenderable = spawner.getModel()
+        testRenderable = spawner.getModel(monsterToSpawn)
 
         return monsterToSpawn
     }

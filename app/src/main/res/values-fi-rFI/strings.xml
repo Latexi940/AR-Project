@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AR-Project</string>
-    <string name="button_name">Add model</string>
+    <string name="button_name">Näytä monsteri</string>
     <string name="welcome_text1">Tervetuloa Catch-a-Moniin!</string>
     <string name="welcome_text2">Syötä nimesi:</string>
     <string name="start_button_text">Aloita seikkailusi</string>

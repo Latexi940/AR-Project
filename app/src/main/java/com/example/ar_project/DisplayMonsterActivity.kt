@@ -17,12 +17,13 @@ import kotlinx.android.synthetic.main.activity_display_monster.*
 
 
 
-private lateinit var monsterFragment: ArFragment
-private var testRenderable: ModelRenderable? = null
+
 
 class DisplayMonsterActivity :  AppCompatActivity() {
     private var monsterName : String? = null
     private var modelUri: Uri? = null
+    private lateinit var monsterFragment: ArFragment
+    private var testRenderable: ModelRenderable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,9 +38,9 @@ class DisplayMonsterActivity :  AppCompatActivity() {
             addObject()
         }
 
-        if(monsterName == "longcatto") {
+        if(monsterName == "Longcatto") {
             modelUri = Uri.parse("longcatto.gltf")
-        } else if (monsterName == "ugly"){
+        } else if (monsterName == "Ugly"){
             modelUri = Uri.parse("monster1.gltf")
         }
 
@@ -70,10 +71,13 @@ class DisplayMonsterActivity :  AppCompatActivity() {
         val hits: List<HitResult>
 
         if (frame != null && testRenderable != null) {
+
             hits = frame.hitTest(point.x.toFloat(), point.y.toFloat())
             for (hit in hits) {
+
                 val trackable = hit.trackable
                 if (trackable is Plane) {
+
                     val anchor = hit!!.createAnchor()
                     val anchorNode = AnchorNode(anchor)
                     anchorNode.setParent(monsterFragment.arSceneView.scene)
