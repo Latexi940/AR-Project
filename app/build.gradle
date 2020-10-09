@@ -2,6 +2,18 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'com.google.ar.sceneform.plugin'
+
+sceneform.asset('sampledata/monster1/monster1.gltf', // 'Source Asset Path' specified during import.
+        'default',                            // 'Material Path' specified during import.
+        'sampledata/monster1/monster1.sfa',         // '.sfa Output Path' specified during import.
+        'src/main/assets/monster1')
+
+sceneform.asset('sampledata/longcatto/longcatto.gltf', // 'Source Asset Path' specified during import.
+        'default',                            // 'Material Path' specified during import.
+        'sampledata/longcatto/longcatto.sfa',         // '.sfa Output Path' specified during import.
+        'src/main/assets/longcatto')
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -51,3 +63,4 @@ dependencies {
 
 
 }
+

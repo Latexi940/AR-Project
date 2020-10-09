@@ -28,14 +28,14 @@ import kotlin.math.sqrt
 
 
 class MainActivity : AppCompatActivity() {
-
+    private var user: User? = null
     private lateinit var fragment: ArFragment
     private var locationService = LocationService()
     private var serviceIsBound: Boolean = false
     private var testRenderable: ModelRenderable? = null
     var userLocation: Location? = null
     private var spawningLocation: Location? = null
-    private var user: User? = null
+
     private var mSensorManager: SensorManager? = null
     private var mAccel = 0f
     private var mAccelCurrent = 0f
@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
     private var shakeDetected = false
     private lateinit var mHandler: Handler
     private lateinit var mRunnable: Runnable
+
 
     private val connection = object : ServiceConnection {
 
@@ -63,7 +64,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         loadProfile()
-        Toast.makeText(this, "Happy catching ${user}!", Toast.LENGTH_SHORT).show()
+
+        Toast.makeText(this,"${getString(R.string.welcome_toast)} ${user}!", Toast.LENGTH_SHORT).show()
+
 
         fragment = supportFragmentManager.findFragmentById(R.id.sceneform_fragment) as ArFragment
         fragment.arSceneView.scene.addOnUpdateListener {
@@ -86,6 +89,9 @@ class MainActivity : AppCompatActivity() {
 
         map_btn.setOnClickListener {
             switchToMap()
+        }
+        profile_btn.setOnClickListener{
+            switchToProfile()
         }
     }
 
@@ -137,7 +143,7 @@ class MainActivity : AppCompatActivity() {
             for (hit in hits) {
                 val trackable = hit.trackable
                 if (trackable is Plane) {
-                    if (getSpawningChance(10) && isSpawningAllowed()) {
+                    if (getSpawningChance(90) && isSpawningAllowed()) {
                         val monster = createMonsterToView()
                         if (testRenderable != null) {
                             Log.i("ARPROJECT", "${monster.name} rendering")
@@ -151,6 +157,7 @@ class MainActivity : AppCompatActivity() {
                             mNode.setOnTapListener { hitTestRes: HitTestResult?, motionEv: MotionEvent? ->
                                 Log.i("ARPROJECT", "Model tapped")
                                 catchMonster(monster, mNode)
+
                             }
                             break
                         }
@@ -206,6 +213,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun switchToMap() {
         val intent = Intent(this@MainActivity, MapActivity::class.java)
+        //intent.putExtra("user",user)
+        startActivity(intent)
+    }
+
+    private  fun switchToProfile(){
+        val intent = Intent(this@MainActivity, ProfileActivity::class.java)
+       // intent.putExtra("User", user);
         startActivity(intent)
     }
 
@@ -238,11 +252,11 @@ class MainActivity : AppCompatActivity() {
             Log.i("ARPROJECT", "User profile loaded to Main: $user.")
         } else {
             Log.i("ARPROJECT", "No user in SharedPreferences")
-            val i = Intent()
+           /* val i = Intent()
             user = i.getSerializableExtra("userProfile") as User?
             if (user != null) {
                 Log.i("ARPROJECT", "$user loaded with intent")
-            }
+            } */
         }
     }
 

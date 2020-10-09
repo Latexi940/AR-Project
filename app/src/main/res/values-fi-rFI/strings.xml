@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AR-Project</string>
+    <string name="button_name">Add model</string>
+    <string name="welcome_text1">Tervetuloa Catch-a-Moniin!</string>
+    <string name="welcome_text2">Syötä nimesi:</string>
+    <string name="start_button_text">Aloita seikkailusi</string>
+    <string name="monster_inventory_btn">Monsteri kokoelma</string>
+    <string name="distance_traveled">Kuljettu matka: </string>
+    <string name="welcome_toast">Hauskaa metsästystä</string>
+    <string name="toast_caught">Napattu</string>
+
+
+
+</resources>
